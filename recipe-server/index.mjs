@@ -1,18 +1,18 @@
-import Express from 'express';
-import fetch from 'node-fetch';
-import cors from 'cors';
+const express = require("express");
+const fetch = require("node-fetch");
+const cors = require("cors");
 
-const app = Express()
-const API_BASE_URL = 'http://www.recipepuppy.com';
+const app = express();
+const API_BASE_URL = "http://www.recipepuppy.com";
 
 app.use(cors());
 
-app.get('/api', async (req, res) => {
+app.get("/api", async (req, res) => {
   try {
     const response = await fetch(`${API_BASE_URL}${req.originalUrl}`);
     const json = await response.json();
 
-    res.send(json)
+    res.send(json);
   } catch (error) {
     res.status(404).send({ error });
   }
